@@ -53,3 +53,11 @@ class Agent(object):
     def wanna_buy(self, game_state, current_box):
         print("Player %s , do u wanna buy your current box %s. Press Y to confirm" % (self.id, current_box.display_name))
         return True if str(raw_input()).lower() == "y" else False
+
+    def wanna_use_jail_card(self, game_state):
+        print("Player %s , do u wanna use jail card here. Press Y to confirm")
+        return True if str(raw_input()).lower() == "y" else False
+
+    def wanna_pay_for_jail(self, game_state):
+        print("Player do u wanna pay money to get out of the jail. Press Y to confirm")
+        return True if str(raw_input()).lower() == "y" else False

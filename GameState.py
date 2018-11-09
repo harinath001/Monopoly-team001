@@ -103,6 +103,8 @@ class Player(object):
         self.cash = inital_cash
         self.position = 0
         self.agent = game_agent
+        self.jail_cards = 0
+        self.jail_turn_count = 0
 
     def add_cash(self, cash):
         self.cash += cash
@@ -126,8 +128,33 @@ class Player(object):
         :param val:
         :return:
         """
-        self.position += val
-        self.position = self.position % 40
+        if not self.is_in_jail():
+            self.position += val
+            self.position = self.position % 40
+        else:
+            print("THIS PLAYER is in JAIL, unable to move out of jail")
+
+    def move_to_jail(self):
+        self.position = -1
+        self.jail_turn_count = 0
+
+    def is_in_jail(self):
+        if self.position == -1:
+            return True
+        return False
+
+    def use_jail_card(self):
+        if self.jail_cards>0:
+            self.jail_cards -= 1
+            self.move_out_of_jail()
+            self.jail_turn_count = 0
+            return True
+        return False
+
+    def move_out_of_jail(self):
+        if self.position==-1:
+            self.jail_turn_count = 0
+            self.position = 10
 
 
 
@@ -158,7 +185,7 @@ class Dice(object):
     def roll(self):
         print("Enter the DICE values (comma seperated)")
         return [int(x.strip()) for x in str(raw_input()).strip().split(",")[:2]]
-        #return (random.randint(1, 6), random.randint(1, 6))
+        # return [random.randint(1, 6), random.randint(1, 6)]
 
 
 
@@ -203,15 +230,52 @@ class GameEngine(object):
 
     def run(self):
         while True:
+            curr, other = self.get_players()
             self.bmst()
-            self.dice_roll()
-            self.move_the_player()
-            self.square_effect()
-            self.bmst()
+            if curr.is_in_jail():
+                self.jail_run()
+            else:
+                self.dice_roll()
+                if self.game_state.double_count == 3:
+                    print("3 times double detected !!")
+                    self.double_run_penalty_run()
+                else:
+                    self.steps()
             self.decide_players_chance()
+            print("player 0 money is ", self.p1.cash)
+            print("player 1 money is ", self.p2.cash)
             print("one round is done PRESS ENTER to continue")
             raw_input()
 
+    def steps(self):
+        self.move_the_player()
+        self.square_effect()
+        self.bmst()
+
+
+    def double_run_penalty_run(self):
+        print("the player is moved to jail because of double run penalty")
+        curr, other = self.get_players()
+        curr.move_to_jail()
+
+    def jail_run(self):
+        curr, other = self.get_players()
+        if curr.agent.wanna_use_jail_card(self.game_state) and curr.use_jail_card():
+            self.dice_roll()
+            self.steps()
+        elif curr.agent.wanna_pay_for_jail(self.game_state) and curr.remove_cash(500):
+            curr.move_out_of_jail()
+            self.dice_roll()
+            self.steps()
+        else:
+            curr.jail_turn_count += 1
+            self.dice_roll()
+            if self.game_state.dice_values == [1,1] or curr.jail_turn_count>=3:
+                print("the player got double so move out of jail !!")
+                curr.move_out_of_jail()
+                self.steps()
+            else:
+                print("the player had to roll the dice and didnt get the double..so wait for next chance")
 
 
     # -------- states begin
@@ -236,8 +300,11 @@ class GameEngine(object):
                 self.chance_state()
             elif curr_box.is_community_chest():
                 self.community_chest_state()
+            elif curr_box.display_name=="GO TO JAIL":
+                curr.move_to_jail()
+                # self.jail_state()
             elif curr_box.is_jail():
-                self.jail_state()
+                print("the player is in jail for visiting state")
         else:
             # buying unowned property
             if curr_box.state==0:
@@ -255,26 +322,6 @@ class GameEngine(object):
                     print("the player landed in other players property..")
                     rent_to_be_paid = curr_box.rent_to_be_paid()
                     self.make_player_to_pay_money(curr, rent_to_be_paid, " landed in "+curr_box.display_name)
-                    # print("the rent to be paid is ", rent_to_be_paid)
-                    # x, y = self.game_state.rent_to_be_paid
-                    # if curr.id==self.p1.id:
-                    #     self.game_state.rent_to_be_paid = [rent_to_be_paid, y]
-                    # else:
-                    #     self.game_state.rent_to_be_paid = [x, rent_to_be_paid]
-                    # if curr.remove_cash(rent_to_be_paid):
-                    #     print("rent paid successfully")
-                    #     other.add_cash(rent_to_be_paid)
-                    # else:
-                    #     print("the player dont have cash...so lets do BMST")
-                    #     self.bmst()
-                    #     if curr.remove_cash(rent_to_be_paid):
-                    #         print("AFTER BMST the player got some money to pay")
-                    #         other.add_cash(rent_to_be_paid)
-                    #     else:
-                    #         print("THE PLAYER ", curr.id, " lost the game...unable to pay the money")
-                    #         print("player ", other.id, " won the game")
-                    #         exit()
-            # landed in mortgaged property
             else:
                 print("the player landed in mortgaged property")
 
@@ -335,8 +382,8 @@ class GameEngine(object):
         elif i==5:
             pass
         elif i==6:
-            curr.set_position(self.game_state.give_jail_box_index())
-            self.move_the_player(reward=False)
+            curr.move_to_jail()
+            # self.move_the_player(reward=False)
         elif i==7:
             curr.add_cash(50)
             self.make_player_to_pay_money(other, 50, "GRAND OPERA NIGHT (chance 7 by other player)")
@@ -346,12 +393,15 @@ class GameEngine(object):
             curr.add_cash(20)
         elif i==10:
             self.make_player_to_pay_money(other, 10, " other players birthday (chance 10 by other player)")
+            curr.add_cash(10)
         elif i==11:
             curr.add_cash(100)
         elif i==12:
             self.make_player_to_pay_money(curr, 50, " hospital fee (chance 12)")
+            curr.add_cash(50)
         elif i==13:
             self.make_player_to_pay_money(curr, 50, "school fee (chance 13)")
+            curr.add_cash(50)
         elif i==14:
             curr.add_cash(25)
         elif i==15:
@@ -361,24 +411,32 @@ class GameEngine(object):
         elif i==17:
             curr.add_cash(100)
 
-    def jail_state(self):
-        print("this is jail state")
-        curr, _ = self.get_players()
-        rent_to_be_paid = 500
-        self.make_player_to_pay_money(curr, rent_to_be_paid, " jail rent ")
-
+    # def jail_state(self):
+    #     print("this is jail state")
+    #     curr, _ = self.get_players()
+    #     if curr.is_in_jail():
+    #         rent_to_be_paid = 500
+    #         if curr.agent.wanna_use_jail_card(self.game_state):
+    #             curr.use_jail_card()
+    #         else:
+    #             self.make_player_to_pay_money(curr, rent_to_be_paid, " jail rent ")
 
     def auction_state(self):
-        print("Auction has to happen now... but not yet implemented")
+        curr, other = self.get_players()
+        current_pos = self.game_state.players_positions[curr.id]
+        if self.game_state.boxes[current_pos].state==0:
+            print("Auction has to happen now... but not yet implemented")
+
 
     def move_the_player(self, reward=True):
         curr, _ = self.get_players()
         if self.game_state.double_count==3:
             print("3 times double count detected ")
-            jail_index = self.game_state.give_jail_box_index()
-            print("the index of jail box is ", jail_index)
-            curr.set_position(jail_index)
-            # self.game_state.double_count = 0
+            # jail_index = self.game_state.give_jail_box_index()
+            # print("the index of jail box is ", jail_index)
+            # curr.set_position(jail_index)
+            curr.move_to_jail()
+            self.game_state.double_count = 0
         else:
             prev = curr.get_position()
             curr.move_position(self.game_state.dice_values[0] + self.game_state.dice_values[1])
@@ -405,16 +463,16 @@ class GameEngine(object):
 
 
     def bmst(self):
-        # print("assume BSMT is done with no player want to do any buy or sell or trade .....")
-        # return
-        while True:
-            build_house_1, build_house_2 = self.build_house_state()
-            sell_house_1, sell_house_2 = self.sell_house_state()
-            trade_1, trade_2 = self.trade_state()
-            mort_1, mort_2 = self.mortgage_state()
-            if not build_house_1 and not build_house_2 and not sell_house_1 and not sell_house_2 \
-                and not trade_1 and not trade_2 and not mort_1 and not mort_2:
-                break
+        print("assume BSMT is done with no player want to do any buy or sell or trade .....")
+        return
+        # while True:
+        #     build_house_1, build_house_2 = self.build_house_state()
+        #     sell_house_1, sell_house_2 = self.sell_house_state()
+        #     trade_1, trade_2 = self.trade_state()
+        #     mort_1, mort_2 = self.mortgage_state()
+        #     if not build_house_1 and not build_house_2 and not sell_house_1 and not sell_house_2 \
+        #         and not trade_1 and not trade_2 and not mort_1 and not mort_2:
+        #         break
 
     def build_house_state(self):
         curr, other = self.get_players()
@@ -462,7 +520,7 @@ class GameEngine(object):
         current_box = self.game_state.boxes[current_pos]
         if not current_box.is_start() and not current_box.is_community_chest() and not current_box.is_chance() and current_box.state==0:
             # if the given box is not special, then allow the user to buy the box
-            if curr.agent.wanna_buy(self.game_state, current_box) :
+            if curr.agent.wanna_buy(self.game_state, current_box):
                 print("PLAYER ", curr.id, " is interested to buy the current box")
                 # user is interested to buy the current box
                 if curr.remove_cash(current_box.buy_cost):
@@ -479,6 +537,7 @@ class GameEngine(object):
         box_pos = player.agent.build_house(self.game_state)
         box = self.game_state.boxes[box_pos]
         if abs(box.state) >=1 and abs(box.state)<5:
+            self.make_player_to_pay_money(player, box.buy_house_cost, "to build house at "+str(box.position))
             box.state = box.state + (1 if box.state>0 else -1)
         else:
             print("UNABLE TO BUILD THE HOUSE, current state is ", box.state)

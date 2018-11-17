@@ -26,7 +26,7 @@ class Box:
         :param position_number: index of the box from start position
         :param kwargs: it contain all other information about the box like color, name etc
         """
-        self.state = 0
+        self.state = kwargs.get("state", 0)
         self.position = kwargs.get("position_number", None)
         self.special = kwargs.get("special", None)
         self.color = kwargs.get("color", None)
@@ -66,8 +66,8 @@ class Box:
     def is_utility(self):
         return self.special=="UTILITY"
 
-    def is_station(self):
-        return self.special=="STATION"
+    # def is_station(self):
+    #     return self.special=="STATION"
 
     def is_start(self):
         return self.special=="START"
@@ -96,6 +96,19 @@ class Box:
             return self.rent_with_four_house
         elif state==6:
             return self.rent_with_hotel
+
+    def is_owned_by(self, player_id):
+        if self.state==0:
+            return False
+        if self.state>0 and player_id==0:
+            return True
+        if self.state<0 and player_id==1:
+            return True
+        return False
+
+    def number_of_houses_owned(self, player_id):
+        pass
+
 
 class Player(object):
     def __init__(self, id, game_agent, inital_cash=0):
@@ -184,8 +197,8 @@ class Dice(object):
 
     def roll(self):
         print("Enter the DICE values (comma seperated)")
-        return [int(x.strip()) for x in str(raw_input()).strip().split(",")[:2]]
-        # return [random.randint(1, 6), random.randint(1, 6)]
+        # return [int(x.strip()) for x in str(raw_input()).strip().split(",")[:2]]
+        return [random.randint(1, 6), random.randint(1, 6)]
 
 
 
@@ -214,16 +227,83 @@ class GameState(object):
                 return index
         return -1
 
+    def get_all_houses_boxes_indexes(self, player_id):
+        ans = []
+        for i, each in enumerate(self.boxes):
+            if player_id==0:
+                if each.state >1 and each.state<7:
+                    ans += [i]
+            else:
+                if each.state <-1 and abs(each.state)<7:
+                    ans += [i]
+        return ans
+
+    def get_all_owned_boxes(self, player_id):
+        ans = []
+        for i, each in enumerate(self.boxes):
+            if player_id==0:
+                if each.state >0 and each.state<7:
+                    ans += [i]
+            else:
+                if each.state <0 and abs(each.state)<7:
+                    ans += [i]
+        return ans
+
+    def get_all_owned_same_colored_boxes(self, player_id, color):
+        ans = []
+        temp = self.get_all_owned_boxes(player_id)
+        for each in temp:
+            if self.boxes[each].color == color:
+                ans += [each]
+        return ans
+
+    def get_rent_to_be_paid(self, owner_id, box_index):
+        box = self.boxes[box_index]
+        r = box.rent_to_be_paid()
+        if not r:
+            return None
+        if box.special == "UTILITY":
+            owned_boxes = self.get_all_owned_boxes(owner_id)
+            if "train" in str(box.display_name).lower():
+                count = 0
+                for each in owned_boxes:
+                    if "train" in str(self.boxes[each].display_name).lower():
+                        count+=1
+                r = (2**(count-1))*r
+            elif "tap" in str(box.display_name).lower():
+                r = (self.dice_values[0]+self.dice_values[1]) * r
+            elif "bulb" in str(box.display_name).lower():
+                r = (self.dice_values[0] + self.dice_values[1]) * r
+        elif abs(box.state)==1:
+            all_same_coloured_boxes = self.get_all_owned_same_colored_boxes(owner_id, box.color)
+            if len(all_same_coloured_boxes)>=3:
+                r = r*2
+        return r
+
+    def is_player_eligible_to_build_house_at_box(self, player_id, at):
+        box = self.boxes[at]
+        if (player_id==0 and box.state>0 and abs(box.state)<=5) or (player_id==1 and box.state<0 and abs(box.state)<=5):
+            color = box.color
+            same_color_boxes = [x for x in self.boxes if x.is_owned_by(player_id) and x.color==color]
+            if len(same_color_boxes)>=3:
+                return True
+        return False
+
+    def assign_a_property_to_player(self, player_id, box_index):
+        self.boxes[box_index].state = 1 if player_id==0 else -1
+
+    def revoke_a_property_from_player(self, player_id, box_index):
+        self.boxes[box_index].state = 7 if player_id==0 else -7
 
 # self.game_state.load_state("each_box_data.json")
 
 class GameEngine(object):
-    def __init__(self, game_state, player1, player2, bank):
+    def __init__(self, game_state, player1, player2, bank, dice=None):
         self.game_state = game_state
         self.p1 = player1
         self.p2 = player2
         self.bank = bank
-        self.dice = Dice()
+        self.dice = dice if dice is not None else Dice()
 
     def get_players(self):
         return (self.p1, self.p2) if self.game_state.turn_number%2 == 0 else (self.p2, self.p1)
@@ -252,7 +332,6 @@ class GameEngine(object):
         self.square_effect()
         self.bmst()
 
-
     def double_run_penalty_run(self):
         print("the player is moved to jail because of double run penalty")
         curr, other = self.get_players()
@@ -280,7 +359,7 @@ class GameEngine(object):
 
     # -------- states begin
     def decide_players_chance(self):
-        if list(self.game_state.dice_values)==[1,1]:
+        if self.game_state.dice_values[0]==self.game_state.dice_values[1]:
             print("the current player got a double so  he gets another chance")
             if self.game_state.double_count >= 3:
                 print("the current player got a double more than 3 times so now give chance to other player")
@@ -294,7 +373,7 @@ class GameEngine(object):
         curr, other = self.get_players()
         curr_pos = curr.get_position()
         curr_box = self.game_state.boxes[curr_pos]
-        if curr_box.is_special():
+        if curr_box.is_special() and not curr_box.is_utility():
             print("current box is special box")
             if curr_box.is_chance():
                 self.chance_state()
@@ -320,7 +399,8 @@ class GameEngine(object):
                     pass
                 else:
                     print("the player landed in other players property..")
-                    rent_to_be_paid = curr_box.rent_to_be_paid()
+                    #rent_to_be_paid = curr_box.rent_to_be_paid()
+                    rent_to_be_paid = self.game_state.rent_to_be_paid(other.id, curr_box.id)
                     self.make_player_to_pay_money(curr, rent_to_be_paid, " landed in "+curr_box.display_name)
             else:
                 print("the player landed in mortgaged property")
@@ -331,36 +411,55 @@ class GameEngine(object):
         n = 16
         i = random.randint(1, n)
         if i == 1:
+            # advance to go, collect 200
             pass
         elif i == 2:
+            # advance to illinois avenue 24, if you pass go collet 200$
             pass
         elif i == 3:
+            # advance to st.charles place, 11,  if you pass go collect 200$
             pass
         elif i == 4:
+            # advance token to nearest utility, if unowned u can buy, otherwise throw dice and pay 10 times the amount thrown of dice
             pass
         elif i == 5:
+            # advance token to nearest rail road, if unowned u can buy, else pay double the normal rent
             pass
         elif i == 6:
+            # advance token to nearest rail road, if unowned u can buy, else pay double the normal rent
             pass
         elif i == 7:
+            # bank pays you 50$
             pass
         if i == 8:
+            # get out of jail free
             pass
         elif i == 9:
+            # get back three spaces
             pass
         elif i == 10:
+            # go to jail directly, dont collect 200$
             pass
         elif i == 11:
+            # make general repairs, for each house pay 25, for hotel 100
             pass
         elif i == 12:
+            # pay poor tax 15
             pass
         elif i == 13:
+            # take a trip to reading rail road, if you pass go collect 200
             pass
         elif i == 14:
+            # advance token to boardwalk, 39
             pass
         elif i == 15:
+            # pay 50 to each, board chairman
             pass
         elif i == 16:
+            # receive 150
+            pass
+        elif i==17:
+            # collect 100, won crossword
             pass
 
     def community_chest_state(self):
@@ -380,6 +479,7 @@ class GameEngine(object):
         elif i==4:
             curr.add_cash(50)
         elif i==5:
+            # get out of jail card
             pass
         elif i==6:
             curr.move_to_jail()
@@ -405,6 +505,7 @@ class GameEngine(object):
         elif i==14:
             curr.add_cash(25)
         elif i==15:
+            # pay 40 per house and 115 per hotel
             pass
         elif i==16:
             curr.add_cash(10)
@@ -425,7 +526,13 @@ class GameEngine(object):
         curr, other = self.get_players()
         current_pos = self.game_state.players_positions[curr.id]
         if self.game_state.boxes[current_pos].state==0:
-            print("Auction has to happen now... but not yet implemented")
+            p1_value = current_pos.respond_auction(self.game_state, current_pos)
+            p2_value = other.respond_auction(self.game_state, current_pos)
+            if p1_value >= p2_value:
+                #
+                pass
+            else:
+                pass
 
 
     def move_the_player(self, reward=True):
@@ -456,62 +563,76 @@ class GameEngine(object):
             print("PLAYER 1 is Rolling the dice ")
         self.game_state.dice_values = self.dice.roll()
         print("Dice Values are %s , %s"%tuple(self.game_state.dice_values))
-        if self.game_state.dice_values == [1,1]:
+        #if self.game_state.dice_values == [1,1]:
+        if self.game_state.dice_values[0] == self.game_state.dice_values[1]:
             self.game_state.double_count += 1
         # else:
         #     self.game_state.double_count = 0
 
 
     def bmst(self):
-        print("assume BSMT is done with no player want to do any buy or sell or trade .....")
-        return
-        # while True:
-        #     build_house_1, build_house_2 = self.build_house_state()
-        #     sell_house_1, sell_house_2 = self.sell_house_state()
-        #     trade_1, trade_2 = self.trade_state()
-        #     mort_1, mort_2 = self.mortgage_state()
-        #     if not build_house_1 and not build_house_2 and not sell_house_1 and not sell_house_2 \
-        #         and not trade_1 and not trade_2 and not mort_1 and not mort_2:
-        #         break
+        # print("assume BSMT is done with no player want to do any buy or sell or trade .....")
+        # return
+        while True:
+            build_house_1, build_house_2 = self.build_house_state()
+            sell_house_1, sell_house_2 = self.sell_house_state()
+            trade_1, trade_2 = self.trade_state()
+            mort_1, mort_2 = self.mortgage_state()
+            if not build_house_1 and not build_house_2 and not sell_house_1 and not sell_house_2 \
+                and not trade_1 and not trade_2 and not mort_1 and not mort_2:
+                break
 
     def build_house_state(self):
         curr, other = self.get_players()
-        bh_1 = curr.agent.wanna_build_house(self.game_state)
-        if bh_1:
-            self.build_house(curr)
-        bh_2 = other.agent.wanna_build_house(self.game_state)
-        if bh_2:
-            self.build_house(other)
+        bh_1 = False
+        bh_2 = False
+        if True in [self.game_state.is_player_eligible_to_build_house_at_box(curr.id, x) for x in range(0, len(self.game_state.boxes))]:
+            bh_1 = curr.agent.wanna_build_house(self.game_state)
+            if bh_1:
+                self.build_house(curr)
+        if True in [self.game_state.is_player_eligible_to_build_house_at_box(other.id, x) for x in range(0, len(self.game_state.boxes))]:
+            bh_2 = other.agent.wanna_build_house(self.game_state)
+            if bh_2:
+                self.build_house(other)
         return (bh_1, bh_2)
+
+
 
     def sell_house_state(self):
         curr, other = self.get_players()
-        sh_1 = curr.agent.wanna_sell_house(self.game_state)
-        if sh_1:
-            self.sell_house(curr)
-        sh_2 = other.agent.wanna_sell_house(self.game_state)
-        if sh_2:
-            self.sell_house(other)
+        sh_1, sh_2 = False, False
+        if self.game_state.get_all_houses_boxes_indexes(curr.id):
+            sh_1 = curr.agent.wanna_sell_house(self.game_state)
+            if sh_1:
+                self.sell_house(curr)
+        if self.game_state.get_all_houses_boxes_indexes(other.id):
+            sh_2 = other.agent.wanna_sell_house(self.game_state)
+            if sh_2:
+                self.sell_house(other)
         return (sh_1, sh_2)
 
     def trade_state(self):
-        curr, other = self.get_players()
-        t_1 = curr.agent.wanna_trade(self.game_state)
-        if t_1:
-            self.trade(curr)
-        t_2 = other.agent.wanna_trade(self.game_state)
-        if t_2:
-            self.trade(other)
-        return (t_1, t_2)
+        return False, False
+        # curr, other = self.get_players()
+        # t_1 = curr.agent.wanna_trade(self.game_state)
+        # if t_1:
+        #     self.trade(curr)
+        # t_2 = other.agent.wanna_trade(self.game_state)
+        # if t_2:
+        #     self.trade(other)
+        # return (t_1, t_2)
 
     def mortgage_state(self):
         curr, other = self.get_players()
-        m_1 = curr.agent.wanna_mortgage(self.game_state)
-        if m_1:
-            self.mortgage(curr)
-        m_2 = other.agent.wanna_mortgage(self.game_state)
-        if m_2:
-            self.mortgage(other)
+        m_1, m_2 = False, False
+        if self.game_state.get_all_owned_boxes(curr.id):
+            m_1 = curr.agent.wanna_mortgage(self.game_state)
+            if m_1:
+                self.mortgage(curr)
+        if self.game_state.get_all_owned_boxes(other.id):
+            m_2 = other.agent.wanna_mortgage(self.game_state)
+            if m_2:
+                self.mortgage(other)
         return (m_1, m_2)
 
     def buy_state(self):
@@ -556,7 +677,8 @@ class GameEngine(object):
         box_pos = player.agent.mortgage(self.game_state)
         box = self.game_state.boxes[box_pos]
         player.add_cash(box.mortgage_val)
-        box.state = 7 if player.id==self.p1.id else -7
+        self.game_state.revoke_a_property_from_player(player.id, box_pos)
+        # box.state = 7 if player.id==self.p1.id else -7
 
     def make_player_to_pay_money(self, player, money, purpose):
         rent_to_be_paid = money
@@ -577,11 +699,5 @@ class GameEngine(object):
                 print("THE PLAYER ", player.id, " lost the game...unable to pay the money for the purpose ", purpose)
                 exit()
         print("player ", player.id, " currently have ", player.cash, " after deduction")
-
-    def get_player_houses(self, player):
-        if player.id ==0:
-            pass
-        else:
-            pass
 
 

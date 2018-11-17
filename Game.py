@@ -12,4 +12,3 @@ game_state = GameState()
 game_state.load_state("each_box_data.json")
 engine = GameEngine(game_state, p1, p2, b)
 engine.run()
-

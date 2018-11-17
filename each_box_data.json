@@ -76,18 +76,18 @@
     }, 
     "5": {
         "rent_with_two_house": null, 
-        "display_name": "TRAIN (5)", 
-        "rent_with_three_house": null, 
-        "color": null, 
-        "rent_with_one_house": null, 
-        "rent_with_hotel": null, 
-        "buy_house_cost": null, 
-        "mortgage_val": 140, 
-        "no_house_rent": 110, 
-        "buy_cost": 280, 
+        "display_name": "TRAIN (5)",
+        "rent_with_three_house": null,
+        "color": null,
+        "rent_with_one_house": null,
+        "rent_with_hotel": null,
+        "buy_house_cost": null,
+        "mortgage_val": 100,
+        "no_house_rent": 50,
+        "buy_cost": 200,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": null
+        "special": "UTILITY"
     }, 
     "6": {
         "rent_with_two_house": 280, 
@@ -192,7 +192,7 @@
         "buy_cost": 230, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": null
+        "special": "UTILITY"
     }, 
     "13": {
         "rent_with_two_house": 290, 
@@ -226,19 +226,19 @@
     }, 
     "15": {
         "rent_with_two_house": null, 
-        "display_name": "TRAIN (15)", 
-        "rent_with_three_house": null, 
-        "color": null, 
-        "rent_with_one_house": null, 
-        "rent_with_hotel": null, 
-        "buy_house_cost": null, 
-        "mortgage_val": 110, 
-        "no_house_rent": 120, 
-        "buy_cost": 220, 
-        "rent_with_four_house": null, 
-        "buy_hotel_cost": null, 
-        "special": null
-    }, 
+        "display_name": "TRAIN (15)",
+        "rent_with_three_house": null,
+        "color": null,
+        "rent_with_one_house": null,
+        "rent_with_hotel": null,
+        "buy_house_cost": null,
+        "mortgage_val": 100,
+        "no_house_rent": 50,
+        "buy_cost": 200,
+        "rent_with_four_house": null,
+        "buy_hotel_cost": null,
+        "special": "UTILITY"
+    },
     "16": {
         "rent_with_two_house": 220, 
         "display_name": "OR1 (16)", 
@@ -376,19 +376,19 @@
     }, 
     "25": {
         "rent_with_two_house": null, 
-        "display_name": "TRAIN (25)", 
-        "rent_with_three_house": null, 
-        "color": null, 
-        "rent_with_one_house": null, 
-        "rent_with_hotel": null, 
-        "buy_house_cost": null, 
-        "mortgage_val": 120, 
-        "no_house_rent": 120, 
-        "buy_cost": 240, 
+        "display_name": "TRAIN (25)",
+        "rent_with_three_house": null,
+        "color": null,
+        "rent_with_one_house": null,
+        "rent_with_hotel": null,
+        "buy_house_cost": null,
+        "mortgage_val": 100,
+        "no_house_rent": 50,
+        "buy_cost": 200,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": null
-    }, 
+        "special": "UTILITY"
+    },
     "26": {
         "rent_with_two_house": 210, 
         "display_name": "Y1 (26)", 
@@ -427,12 +427,12 @@
         "rent_with_one_house": null, 
         "rent_with_hotel": null, 
         "buy_house_cost": null, 
-        "mortgage_val": 85, 
-        "no_house_rent": 110, 
-        "buy_cost": 170, 
+        "mortgage_val": 75,
+        "no_house_rent": 110,
+        "buy_cost": 150,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": null
+        "special": "UTILITY"
     }, 
     "29": {
         "rent_with_two_house": 270, 
@@ -532,12 +532,12 @@
         "rent_with_one_house": null, 
         "rent_with_hotel": null, 
         "buy_house_cost": null, 
-        "mortgage_val": 60, 
-        "no_house_rent": 80, 
-        "buy_cost": 120, 
+        "mortgage_val": 100,
+        "no_house_rent": 50,
+        "buy_cost": 200,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": null
+        "special": "UTILITY"
     }, 
     "36": {
         "rent_with_two_house": null, 

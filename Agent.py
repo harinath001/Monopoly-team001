@@ -12,11 +12,15 @@ class Agent(object):
 
     def wanna_trade(self, game_state):
         print("Player ", self.id, " wanna trade? Press Y to yes and N to no")
+        # print("assuming NO here..and moving forward")
         return True if str(raw_input()).lower()=="y" else False
+        # return False
 
     def wanna_mortgage(self, game_state):
         print("Player ", self.id, " wanna mortgage? Press Y to yes and N to no")
+        print("assuming NO here..and moving forward")
         return True if str(raw_input()).lower() == "y" else False
+        # return False
 
     def build_house(self, game_state):
         """
@@ -30,6 +34,8 @@ class Agent(object):
     def wanna_sell_house(self, game_state):
         print("Player ", self.id, " wanna sell house? Press Y to yes and N to no")
         return True if str(raw_input()).lower()=="y" else False
+        # print("assuming NO here..and moving forward")
+        # return False
 
     def sell_house(self, game_state):
         """
@@ -61,3 +67,17 @@ class Agent(object):
     def wanna_pay_for_jail(self, game_state):
         print("Player do u wanna pay money to get out of the jail. Press Y to confirm")
         return True if str(raw_input()).lower() == "y" else False
+
+    def respond_auction(self, game_state, box_index):
+        """
+        this is blind auction
+        :param game_state:
+        :param box_index:
+        :return: the integer value price
+        """
+        box = game_state.boxes[box_index]
+        print("Enter the price with which you wanna buy this property...")
+        return int(raw_input())
+
+    def respond_trade(self, game_state, box):
+        pass

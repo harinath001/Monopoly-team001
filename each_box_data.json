@@ -13,10 +13,10 @@
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
         "special": "START"
-    }, 
+    },
     "1": {
         "rent_with_two_house": 280, 
-        "display_name": "P1 (1)", 
+        "display_name": "Mediterranian Avenue P1 (1)",
         "rent_with_three_house": 360, 
         "color": "purple", 
         "rent_with_one_house": 200, 
@@ -42,11 +42,13 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "COMMUNITY CHEST"
+        "special": "COMMUNITY CHEST",
+        "nearest_railroad": 5,
+        "nearest_utility": 12
     }, 
     "3": {
         "rent_with_two_house": 250, 
-        "display_name": "P2 (3)", 
+        "display_name": "Baltic Avenu P2 (3)",
         "rent_with_three_house": 350, 
         "color": "purple", 
         "rent_with_one_house": 160, 
@@ -72,7 +74,8 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "INCOME TAX"
+        "special": "INCOME TAX",
+        "tax": 200
     }, 
     "5": {
         "rent_with_two_house": null, 
@@ -117,7 +120,9 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "CHANCE"
+        "special": "CHANCE",
+        "nearest_railroad": 5,
+        "nearest_utility": 12
     }, 
     "8": {
         "rent_with_two_house": 290, 
@@ -267,7 +272,9 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "COMMUNITY CHEST"
+        "special": "COMMUNITY CHEST",
+        "nearest_railroad": 15,
+        "nearest_utility": 12
     }, 
     "18": {
         "rent_with_two_house": 280, 
@@ -342,7 +349,9 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "CHANCE"
+        "special": "CHANCE",
+        "nearest_railroad": 25,
+        "nearest_utility": 28
     }, 
     "23": {
         "rent_with_two_house": 270, 
@@ -421,7 +430,7 @@
     }, 
     "28": {
         "rent_with_two_house": null, 
-        "display_name": "TAP (28)", 
+        "display_name": "TAP (28)",
         "rent_with_three_house": null, 
         "color": null, 
         "rent_with_one_house": null, 
@@ -507,7 +516,9 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "COMMUNITY CHEST"
+        "special": "COMMUNITY CHEST",
+        "nearest_railroad": 35,
+        "nearest_utility": 28
     }, 
     "34": {
         "rent_with_two_house": 250, 
@@ -552,7 +563,9 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "CHANCE"
+        "special": "CHANCE",
+        "nearest_railroad": 35,
+        "nearest_utility": 28
     }, 
     "37": {
         "rent_with_two_house": 260, 
@@ -582,7 +595,8 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "LUXURY TAX"
+        "special": "LUXURY TAX",
+        "tax": 100
     }, 
     "39": {
         "rent_with_two_house": 260, 

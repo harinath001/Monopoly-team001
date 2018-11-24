@@ -1,6 +1,7 @@
 import random
 import json
-from Box import Box
+from Box import Box, JailBox
+import pdb
 
 
 class Dice(object):
@@ -36,6 +37,7 @@ class GameState(object):
             k = d[str(i)]
             k["position_number"]= i
             self.boxes[i] = Box(**k)
+        self.boxes += [JailBox(self, 40), JailBox(self, 41)]
 
 
     def give_jail_box_index(self):
@@ -116,24 +118,74 @@ class GameState(object):
             elif "bulb" in str(box.display_name).lower():
                 r = (self.dice_values[0] + self.dice_values[1]) * r
         elif abs(box.state)==1:
-            all_same_coloured_boxes = self.get_all_owned_same_colored_boxes(owner_id, box.color)
-            if len(all_same_coloured_boxes)>=3:
-                r = r*2
+            if self.is_colour_group_owned(box_index, owner_id,ignore_mortgaged=True):
+                r = 2*r
         return r
 
-    def is_player_eligible_to_build_house_at_box(self, player_id, at):
-        box = self.boxes[at]
-        if (player_id==0 and box.state>0 and abs(box.state)<=5) or (player_id==1 and box.state<0 and abs(box.state)<=5):
-            color = box.color
-            same_color_boxes = [x for x in self.boxes if x.is_owned_by(player_id) and x.color==color]
-            if len(same_color_boxes)>=3:
-                return True
+    def is_player_eligible_to_build_houses_at_color_group(self, player_id, new_positions, new_counts):
+        if not new_positions:
+            return False
+
+        at = int(new_positions[0])
+        if self.is_colour_group_owned(at, player_id, ignore_mortgaged=False):
+            color_group = self.boxes[at].members_of_monopoly + [at]
+            existing_vals = {}
+            # pdb.set_trace()
+            for each in color_group:
+                existing_vals[each] = abs(self.boxes[each].state)-1
+
+            for i,each in enumerate(new_positions):
+                existing_vals[each] += new_counts[i]
+            a = []
+            for each in existing_vals.keys():
+                a += [existing_vals[each]]
+            a.sort()
+            a = list(set(a))
+            for each in a:
+                if each > 5:
+                    print("cannot build more than 5 houses")
+                    return False
+            if len(a) <= 2:
+                if len(a)==2:
+                    if max(a)-min(a)==1:
+                        return True
+                    else:
+                        return False
+                else:
+                    return True
         return False
 
-    def is_player_eligible_to_sell_house_at_box(self, player_id, at):
-        box = self.boxes[at]
-        if box.is_owned_by(player_id) and abs(box.state)<7 and abs(box.state)>1:
-            return True
+    def is_player_eligible_to_sell_houses_at_color_group(self, player_id, new_positions, new_counts):
+        if not new_positions:
+            return False
+
+        at = int(new_positions[0])
+        if self.is_colour_group_owned(at, player_id):
+            color_group = self.boxes[at].members_of_monopoly + [at]
+            existing_vals = {}
+            for each in color_group:
+                existing_vals[each] = abs(self.boxes[each].state)-1
+                if existing_vals[each] == 6:
+                    existing_vals[each] = 0
+            for i,each in enumerate(new_positions):
+                existing_vals[each] -= new_counts[i]
+            a = []
+            for each in existing_vals.keys():
+                a += [existing_vals[each]]
+            a.sort()
+            a = list(set(a))
+            for each in a:
+                if each < 0 or each>5:
+                    print("cannot sell more than houses than present number of houses")
+                    return False
+            if len(a) <= 2:
+                if len(a)==2:
+                    if max(a)-min(a)==1:
+                        return True
+                    else:
+                        return False
+                else:
+                    return True
         return False
 
     def assign_a_property_to_player(self, player_id, box_index):
@@ -141,6 +193,7 @@ class GameState(object):
 
     def revoke_a_property_from_player(self, player_id, box_index):
         self.boxes[box_index].state = 7 if player_id==0 else -7
+
 
     def convert_to_state(self, phase, to_player, **kwargs):
         phase_to_number = {"bmst": 0, "trade": 1, "dice": 2, "buy": 3, "auction": 4, "pay": 5, "jail": 6, "chance": 7, "community_chest": 8}
@@ -181,4 +234,10 @@ class GameState(object):
         return (turn_number, status_of_each_property, positions, cash_holdings, current_phase, additional_field)
 
 
+    def is_colour_group_owned(self, box_pos, player_id, ignore_mortgaged = True):
+        all_boxes = [box_pos] + self.boxes[box_pos].members_of_monopoly
+        for each in all_boxes:
+            if not self.boxes[each].is_owned_by(player_id, ignore_mortgaged=ignore_mortgaged):
+                return False
+        return True
 

@@ -33,7 +33,7 @@ class GameEngine(object):
                     self.double_run_penalty_run()
                 else:
                     self.steps()
-            self.decide_players_chance()
+                self.decide_players_chance()
             print("player 0 money is ", self.p1.cash)
             print("player 1 money is ", self.p2.cash)
             print("one round is done PRESS ENTER to continue")
@@ -74,7 +74,7 @@ class GameEngine(object):
                 final_decision = "r"
         else:
             final_decision = "r"
-
+        skip_jail_double = False
         if final_decision == "c":
             print("Player successfully used the jail card ", card)
             card = int(jail_decision[1])
@@ -83,7 +83,7 @@ class GameEngine(object):
             self.dice_roll()
             self.steps()
         elif final_decision == "p":
-            self.make_player_to_pay_money(curr, 500, " getting out of jail ", pay_to=0)
+            self.make_player_to_pay_money(curr, 50, " getting out of jail ", pay_to=0)
             curr.move_out_of_jail()
             self.dice_roll()
             self.steps()
@@ -91,17 +91,24 @@ class GameEngine(object):
             # handle jail card here
             curr.jail_turn_count += 1
             self.dice_roll()
-            if self.game_state.dice_values[0] == self.game_state.dice_values[1] or curr.jail_turn_count>=3:
+            if self.game_state.dice_values[0] == self.game_state.dice_values[1]:
                 print("the player got double so move out of jail !!")
+                skip_jail_double = True
+                curr.move_out_of_jail()
+                self.steps()
+            elif curr.jail_turn_count>=3:
+                print("The player didnt get double...but this is third time..so now he has to pay 50 and move ahead")
+                self.make_player_to_pay_money(curr, 50, "come out of jail after 3 unsuccessful turns", pay_to=0)
                 curr.move_out_of_jail()
                 self.steps()
             else:
                 print("the player had to roll the dice and didnt get the double..so wait for next chance")
+        self.decide_players_chance(skip_jail_double=skip_jail_double)
 
 
     # -------- states begin
-    def decide_players_chance(self):
-        if self.game_state.dice_values[0]==self.game_state.dice_values[1]:
+    def decide_players_chance(self, skip_jail_double=False):
+        if self.game_state.dice_values[0]==self.game_state.dice_values[1] and not skip_jail_double:
             print("the current player got a double so  he gets another chance")
             if self.game_state.double_count >= 3:
                 print("the current player got a double more than 3 times so now give chance to other player")
@@ -394,9 +401,17 @@ class GameEngine(object):
     def bmst(self):
         # self.bank.houses_in_use = 0
         # self.bank.hotels_in_use = 2
-        # self.game_state.boxes[1].state = 6
-        # self.game_state.boxes[3].state = 6
-        # self.sell_house(self.p1, [(1, 2), (3, 1)])
+        # td = {"cash_offer": 0, "properties_for_offer": [40],
+        #      "cash_requesting": 200,
+        #      "properties_requesting": [1,3]
+        #      }
+        # self.game_state.jail_cards[0] = 1
+        # self.game_state.boxes[1].state = 2
+        # self.game_state.boxes[3].state = 7
+        # self.game_state.boxes[6].state = -1
+        # self.trade_state(self.p2, td)
+        # # self.sell_house(self.p1, [(1, 2), (3, 1)])
+        # self.print_state()
         # print("----")
         # print(self.bank.houses_in_use)
         # print(self.bank.hotels_in_use)
@@ -424,10 +439,6 @@ class GameEngine(object):
                     #     for i in range(0, each_sell[1]):
                     #         self.sell_house(each_player, each_sell[0])
                 elif action[0] == "T":
-                    cash_offer = action[1]
-                    properties_for_offer = action[2]
-                    cash_requesting = action[3]
-                    properties_requesting = action[4]
                     d = {"cash_offer": int(action[1]), "properties_for_offer": [int(x) for x in action[2]],
                          "cash_requesting": int(action[3]),
                          "properties_requesting": [int(x) for x in action[4]]
@@ -436,7 +447,7 @@ class GameEngine(object):
                     print("Trade is not yet implemented")
 
     def trade_state(self, player, trade_dict):
-        if len([x for x in trade_dict["properties_for_offer"]+trade_dict["properties_requesting"] if x<0 or x>41 or (abs(self.game_state.boxes[x].state)!=1 and abs(self.game_state.boxes[x].state)!=7)]) > 0:
+        if len([x for x in trade_dict["properties_for_offer"]+trade_dict["properties_requesting"] if x<0 or x>41 or (x<40 and abs(self.game_state.boxes[x].state)!=1 and abs(self.game_state.boxes[x].state)!=7)]) > 0:
             print("Invalid properties given in trade state")
             return
         other_player = self.p1 if self.p2.id == player.id else self.p2
@@ -457,7 +468,7 @@ class GameEngine(object):
                 second_player_mortgaged = []
                 second_player_unmortgaged = []
                 second_player_jail_cards = []
-                for each in trade_dict["properties_for_requesting"]:
+                for each in trade_dict["properties_requesting"]:
                     if each < 40:
                         if abs(self.game_state.boxes[each].state) < 7:
                             second_player_unmortgaged += [each]

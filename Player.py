@@ -1,21 +1,18 @@
 class Bank(object):
-    def __init__(self, initial_cash=100000):
-        self.cash = initial_cash
-        self.mortgages = []
-        self.unsold_properties = range(0, 40)
+    def __init__(self, total_houses= 32, total_hotels=12):
+        self.total_houses = total_houses
+        self.total_hotels = total_hotels
+        self.houses_in_use = 0
+        self.hotels_in_use = 0
 
-    def want_to_make_auction(self, position, game_state):
-        """
-        :param position:
-        :return: true of false saying whether the bank want to make a auction of property at given position
-        """
-        box = game_state.get_box(position)
-        if box.is_special():
-            return False
-        # with some probability make a decision whether to return True or False
-
-    def auction(self, position, game_state):
+    def give_houses(self, count):
         pass
+
+    def give_hotels(self, count):
+        pass
+
+
+
 
 
 class Player(object):

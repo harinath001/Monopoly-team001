@@ -392,6 +392,15 @@ class GameEngine(object):
         curr.agent.receiveState(self.game_state.convert_to_state("dice", curr))
 
     def bmst(self):
+        # self.bank.houses_in_use = 0
+        # self.bank.hotels_in_use = 2
+        # self.game_state.boxes[1].state = 6
+        # self.game_state.boxes[3].state = 6
+        # self.sell_house(self.p1, [(1, 2), (3, 1)])
+        # print("----")
+        # print(self.bank.houses_in_use)
+        # print(self.bank.hotels_in_use)
+        # raw_input()
         flag = True
         while flag:
             flag = False
@@ -399,19 +408,21 @@ class GameEngine(object):
                 action = each_player.agent.getBMSTDecision(self.game_state.convert_to_state("bmst", each_player))
                 if action[0] == "B":
                     flag = True
-                    for each_buy in action[1]:
-                        for i in range(0, each_buy[1]):
-                            self.build_house(each_player, each_buy[0])
+                    self.build_house(each_player, action[1])
+                    # for each_buy in action[1]:
+                    #     for i in range(0, each_buy[1]):
+                    #         self.build_house(each_player, each_buy[0])
                 elif action[0] == "M":
                     flag = True
-                    for each_pos in action[1]:
-                        self.mortgage_state(each_player, each_pos)
+                    self.mortgage(each_player, action[1])
+                    # for each_pos in action[1]:
+                    #     self.mortgage_state(each_player, each_pos)
                 elif action[0] == "S":
                     flag = True
-                    # pdb.set_trace()
-                    for each_sell in action[1]:
-                        for i in range(0, each_sell[1]):
-                            self.sell_house(each_player, each_sell[0])
+                    self.sell_house(each_player, action[1])
+                    # for each_sell in action[1]:
+                    #     for i in range(0, each_sell[1]):
+                    #         self.sell_house(each_player, each_sell[0])
                 elif action[0] == "T":
                     cash_offer = action[1]
                     properties_for_offer = action[2]
@@ -425,22 +436,84 @@ class GameEngine(object):
                     print("Trade is not yet implemented")
 
     def trade_state(self, player, trade_dict):
-        other_player = self.p1 if self.p2.id == player.id else self.p2
-        res = other_player.agent.respondTrade(self.game_state.convert_to_state("bmst", other_player, **trade_dict))
-        if res is True:
-            pass
-        else:
-            pass
-
-    def mortgage_state(self, player, box_index):
-        box = self.game_state.boxes[box_index]
-        if not box.is_owned_by(player.id):
-            print("This box is not owned by the player..so he cannot unmortgage/mortgage it")
+        if len([x for x in trade_dict["properties_for_offer"]+trade_dict["properties_requesting"] if x<0 or x>41 or (abs(self.game_state.boxes[x].state)!=1 and abs(self.game_state.boxes[x].state)!=7)]) > 0:
+            print("Invalid properties given in trade state")
             return
-        if abs(box.state) != 7:
-            self.mortgage(player, box_index)
+        other_player = self.p1 if self.p2.id == player.id else self.p2
+        if all(self.game_state.boxes[x].is_owned_by(player.id) for x in trade_dict["properties_for_offer"]):
+            if all([self.game_state.boxes[x].is_owned_by(other_player.id) for x in trade_dict["properties_requesting"]]):
+                first_player_mortgaged = []
+                first_player_unmortgaged = []
+                first_player_jail_cards = []
+                for each in trade_dict["properties_for_offer"]:
+                    if each<40:
+                        if abs(self.game_state.boxes[each].state) <7:
+                            first_player_unmortgaged += [each]
+                        else:
+                            first_player_mortgaged += [each]
+                    elif each<42:
+                        first_player_jail_cards += [each]
+
+                second_player_mortgaged = []
+                second_player_unmortgaged = []
+                second_player_jail_cards = []
+                for each in trade_dict["properties_for_requesting"]:
+                    if each < 40:
+                        if abs(self.game_state.boxes[each].state) < 7:
+                            second_player_unmortgaged += [each]
+                        else:
+                            second_player_mortgaged += [each]
+                    elif each < 42:
+                        second_player_jail_cards += [each]
+                res = other_player.agent.respondTrade(self.game_state.convert_to_state("bmst", other_player, **trade_dict))
+                if res is True:
+                    if (player.cash+trade_dict["cash_requesting"])>=trade_dict["cash_offer"] and (other_player.cash+trade_dict["cash_offer"])>=trade_dict["cash_requesting"]:
+                        for each in first_player_jail_cards:
+                            self.game_state.boxes[each].make_owner(other_player.id)
+                        for each in first_player_mortgaged:
+                            self.game_state.boxes[each].state = 7 if other_player.id==0 else -7
+                        for each in first_player_unmortgaged:
+                            self.game_state.boxes[each].state = 1 if other_player.id==0 else -1
+
+                        for each in second_player_jail_cards:
+                            self.game_state.boxes[each].make_owner(player.id)
+                        for each in second_player_mortgaged:
+                            self.game_state.boxes[each].state = 7 if player.id==0 else -7
+                        for each in second_player_unmortgaged:
+                            self.game_state.boxes[each].state = 1 if player.id==0 else -1
+                        player.cash = player.cash+abs(trade_dict["cash_requesting"])- abs(trade_dict["cash_offer"])
+                        other_player.cash = other_player.cash + abs(trade_dict["cash_offer"]) - abs(trade_dict["cash_requesting"])
+                    else:
+                        print("Trade cannot be done as the players have inconsistent cash..")
+                else:
+                    print("The other player declined the trade offer")
+            else:
+                print("Properties the player are requesting are not owned by other player")
         else:
-            self.unmortgage(player, box_index)
+            print("Properties the player are trying to trade are owned by the player")
+
+
+
+        # boxes with properties are not tradable
+
+    def mortgage_state(self, player, props):
+        # box = self.game_state.boxes[box_index]
+        # if not box.is_owned_by(player.id):
+        #     print("This box is not owned by the player..so he cannot unmortgage/mortgage it")
+        #     return
+        # if abs(box.state) != 7:
+        #     self.mortgage(player, box_index)
+        # else:
+        #     self.unmortgage(player, box_index)
+        if all([self.game_state.boxes[x].is_owned_by(player.id) for x in props]):
+            for each in props:
+                box = self.game_state.boxes[each]
+                if abs(box.state) != 7:
+                    self.mortgage(player, each)
+                else:
+                    self.unmortgage(player, each)
+        else:
+            print("Some properties here are not owned by you..so cannot mortgage them")
 
     def buy_state(self, buy_not_happened_trigger=None):
         print("***** BUY STATE *****")
@@ -488,21 +561,112 @@ class GameEngine(object):
         else:
             print("UNABLE TO AUCTION THIS PROPERTY, BECAUSE THE PROPERTY IS NOT IN BUYABLE STATE")
 
-    def build_house(self, player, box_pos):
-        box = self.game_state.boxes[box_pos]
-        if abs(box.state) >=1 and abs(box.state)<5 and self.game_state.is_player_eligible_to_build_house_at_box(player.id, box_pos):
-            self.make_player_to_pay_money(player, box.buy_house_cost, "to build house at "+str(box.position), pay_to=0)
-            box.state = box.state + (1 if box.state>0 else -1)
-        else:
-            print("UNABLE TO BUILD THE HOUSE, current state is ", box.state)
+    def build_house(self, player, new_builds):
 
-    def sell_house(self, player, box_pos):
-        if self.game_state.is_player_eligible_to_sell_house_at_box(player.id, box_pos):
-            box = self.game_state.boxes[box_pos]
-            # when the player sell the house, he will get money half of the money he bought the house
-            print("for selling the house the player will be awarded half of the amount of house")
-            player.add_cash(box.buy_house_cost/2)
-            box.state = box.state - (1 if box.state>0 else -1)
+        # box = self.game_state.boxes[box_pos]
+        # if abs(box.state) >=1 and abs(box.state)<5 and self.game_state.is_player_eligible_to_build_house_at_box(player.id, box_pos):
+        #     self.make_player_to_pay_money(player, box.buy_house_cost, "to build house at "+str(box.position), pay_to=0)
+        #     box.state = box.state + (1 if box.state>0 else -1)
+        # else:
+        #     print("UNABLE TO BUILD THE HOUSE, current state is ", box.state)
+        for each in new_builds:
+            if not self.game_state.boxes[each[0]].is_normal():
+                print("some of the boxes are not normal boxes to build houses..unable to build houses..")
+                return
+        new_builds.sort()
+        groups = [[new_builds[0]]]
+        for each in new_builds[1:]:
+            flag = 1
+            for each_member in self.game_state.boxes[each[0]].members_of_monopoly+[each[0]]:
+                if each_member in [x[0] for x in groups[-1]]:
+                    groups[-1] += [each]
+                    flag = 0
+                    break
+            if flag==1:
+                groups += [[each]]
+        for group in groups:
+            if not self.game_state.is_player_eligible_to_build_houses_at_color_group(player.id, [x[0] for x in group], [abs(x[1]) for x in group]):
+                print(group, " is not eligible for building houses, because wrong configuration given")
+                return
+        # now its proved that the user gave correct configuration
+        # check for number of houses available or not
+        houses = 0
+        hotels = 0
+        total_money_required = 0
+        for each in new_builds:
+            each = (abs(each[0]), abs(each[1]))
+            if each[1]+(abs(self.game_state.boxes[each[0]].state)-1)==5:
+                existing_houses = abs(self.game_state.boxes[each[0]].state)-1
+                hotels += 1
+                houses -= existing_houses
+                total_money_required += (4-existing_houses)*self.game_state.boxes[each[0]].buy_house_cost + self.game_state.boxes[each[0]].buy_hotel_cost
+            else:
+                houses += each[1]
+                total_money_required += each[1]*self.game_state.boxes[each[0]].buy_house_cost
+
+        if (houses+self.bank.houses_in_use) <= self.bank.total_houses and (hotels+self.bank.hotels_in_use)<=self.bank.total_hotels:
+            self.bank.houses_in_use = houses + self.bank.houses_in_use
+            self.bank.hotels_in_use = hotels + self.bank.hotels_in_use
+            if player.remove_cash(total_money_required):
+                for each in new_builds:
+                    self.game_state.boxes[each[0]].state += each[1]
+                print("Buy success..")
+            else:
+                print("The player do not have enough money to buy the houses/hotels")
+        else:
+            print("houses or hotels not available as of now...wait till someone sell them")
+
+
+    def sell_house(self, player, new_builds):
+        # if self.game_state.is_player_eligible_to_sell_house_at_box(player.id, box_pos):
+        #     box = self.game_state.boxes[box_pos]
+        #     # when the player sell the house, he will get money half of the money he bought the house
+        #     print("for selling the house the player will be awarded half of the amount of house")
+        #     player.add_cash(box.buy_house_cost/2)
+        #     box.state = box.state - (1 if box.state>0 else -1)
+        for each in new_builds:
+            if not self.game_state.boxes[each[0]].is_normal():
+                print("some of the boxes are not normal boxes to build houses..unable to build houses..")
+                return
+        new_builds.sort()
+        groups = [[new_builds[0]]]
+        for each in new_builds[1:]:
+            flag = 1
+            for each_member in self.game_state.boxes[each[0]].members_of_monopoly+[each[0]]:
+                if each_member in [x[0] for x in groups[-1]]:
+                    groups[-1] += [each]
+                    flag = 0
+                    break
+            if flag==1:
+                groups += [[each]]
+        for group in groups:
+            if not self.game_state.is_player_eligible_to_sell_houses_at_color_group(player.id, [x[0] for x in group], [abs(x[1]) for x in group]):
+                print(group, " is not eligible for selling houses, because wrong configuration given")
+                return
+        houses = 0
+        hotels = 0
+        total_money_gained = 0
+
+        for each in new_builds:
+            hotel_sell_value = self.game_state.boxes[each[0]].sell_house_cost
+            house_sell_value = self.game_state.boxes[each[0]].sell_hotel_cost
+            each = (abs(each[0]), abs(each[1]))
+            existing_houses = abs(self.game_state.boxes[each[0]].state) - 1
+            if existing_houses == 5:
+                hotels -= 1
+                houses += 5 - each[1]
+                total_money_gained += (each[1]-1)*house_sell_value + hotel_sell_value
+            else:
+                houses -= each[1]
+                total_money_gained += each[1]*house_sell_value
+
+        if (houses+self.bank.houses_in_use) <= self.bank.total_houses and (hotels+self.bank.hotels_in_use) <= self.bank.total_hotels:
+            self.bank.houses_in_use = houses + self.bank.houses_in_use
+            self.bank.hotels_in_use = hotels + self.bank.hotels_in_use
+            print("Sell success..")
+            player.add_cash(total_money_gained)
+        else:
+            print("houses or hotels not available as of now...wait till someone sell them")
 
 
 
@@ -520,6 +684,9 @@ class GameEngine(object):
 
     def unmortgage(self, player, pos):
         box = self.game_state.boxes[pos]
+        if not box.is_owned_by(player.id):
+            print("the player is not owner of property..so unable to unmortgage it")
+            return
         if abs(box.state) == 7:
             unmortgage_val = box.unmortgage_val
             self.make_player_to_pay_money(player, unmortgage_val, "unmortgae of "+str(box.display_name), pay_to=0)

@@ -18,7 +18,7 @@ class PropertyStateEnum:
 
 
 
-class Box:
+class Box(object):
 
     def __init__(self, **kwargs):
         """
@@ -40,24 +40,21 @@ class Box:
         self.buy_house_cost = kwargs.get("buy_house_cost", None)
         self.buy_hotel_cost = kwargs.get("buy_hotel_cost", self.buy_house_cost)
         self.sell_house_cost = kwargs.get("sell_house_cost", None)
+        if self.buy_house_cost is not None:
+            self.sell_house_cost = self.buy_house_cost/2
         self.sell_hotel_cost = kwargs.get("sell_hotel_cost", None)
+        if self.buy_hotel_cost is not None:
+            self.sell_hotel_cost = self.buy_hotel_cost/2
         self.buy_cost = kwargs.get("buy_cost", 10000000)
         self.mortgage_val = kwargs.get("mortgage_val", -10000000)
         self.unmortgage_val = kwargs.get("unmortgage_val", self.mortgage_val)
-        if self.unmortgage_val:
-            self.unmortgage_val += (self.mortgage_val/10 if self.mortgage_val else 0)
+        if self.mortgage_val:
+            self.unmortgage_val = self.mortgage_val + self.mortgage_val/10
         self.tax = kwargs.get("tax", None)
         self.nearest_railroad = kwargs.get("nearest_railroad", None)
         self.nearest_utility = kwargs.get("nearest_utility", None)
+        self.members_of_monopoly = kwargs.get("members_of_monopoly", [])
 
-        if self.special:
-            temp = self.special.lower()
-            if temp == "jail":
-                pass
-            elif temp == "":
-                pass
-            elif temp == "":
-                pass
 
     def is_valid_state(self, state):
         if state>7 or state<-7:
@@ -118,19 +115,52 @@ class Box:
         elif state==6:
             return self.rent_with_hotel
 
-    def is_owned_by(self, player_id):
+    def is_owned_by(self, player_id, ignore_mortgaged=True):
         if self.state==0:
             return False
         if self.state>0 and player_id==0:
-            return True
+            if abs(self.state)<7:
+                return True
+            elif ignore_mortgaged:
+                return True
         if self.state<0 and player_id==1:
-            return True
+            if abs(self.state)<7:
+                return True
+            elif ignore_mortgaged:
+                return True
         return False
 
-    def number_of_houses_owned(self, player_id):
-        pass
+    def number_of_houses(self, player_id):
+        if (player_id == 0 and self.state>0) or (player_id >0 and self.state<0):
+            if abs(self.state)==7:
+                return -1
+            else:
+                return abs(self.state)-1
+        return -1
 
     def is_buyable(self):
         if self.special is None or self.special == "UTILITY":
             return True
         return False
+
+class JailBox:
+    def __init__(self, game_state, position):
+        self.game_state = game_state
+        self.position = position
+        self.state = 0
+
+    def is_owned_by(self, player_id):
+        return self.game_state.jail_cards[self.position-40] == player_id
+
+    def get_state(self):
+        pass
+
+    def is_unowned(self):
+        return self.game_state.jail_cards[self.position-40]==-1
+
+    def make_owner(self, player_id):
+        self.game_state.jail_cards[self.position-40] = player_id
+
+    def give_back_to_bank(self):
+        self.game_state.jail_cards[self.position-40] = -1
+    

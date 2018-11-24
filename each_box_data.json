@@ -12,7 +12,8 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "START"
+        "special": "START",
+        "members_of_monopoly": []
     },
     "1": {
         "rent_with_two_house": 280, 
@@ -27,7 +28,8 @@
         "buy_cost": 140, 
         "rent_with_four_house": 430, 
         "buy_hotel_cost": 350, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [3]
     }, 
     "2": {
         "rent_with_two_house": null, 
@@ -44,7 +46,8 @@
         "buy_hotel_cost": null, 
         "special": "COMMUNITY CHEST",
         "nearest_railroad": 5,
-        "nearest_utility": 12
+        "nearest_utility": 12,
+        "members_of_monopoly": []
     }, 
     "3": {
         "rent_with_two_house": 250, 
@@ -59,7 +62,8 @@
         "buy_cost": 270, 
         "rent_with_four_house": 450, 
         "buy_hotel_cost": 340, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [1]
     }, 
     "4": {
         "rent_with_two_house": null, 
@@ -75,7 +79,8 @@
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
         "special": "INCOME TAX",
-        "tax": 200
+        "tax": 200,
+        "members_of_monopoly": []
     }, 
     "5": {
         "rent_with_two_house": null, 
@@ -90,7 +95,8 @@
         "buy_cost": 200,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "UTILITY"
+        "special": "UTILITY",
+        "members_of_monopoly": [15, 25, 35]
     }, 
     "6": {
         "rent_with_two_house": 280, 
@@ -105,7 +111,8 @@
         "buy_cost": 210, 
         "rent_with_four_house": 430, 
         "buy_hotel_cost": 380, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [8,9]
     }, 
     "7": {
         "rent_with_two_house": null, 
@@ -122,7 +129,8 @@
         "buy_hotel_cost": null, 
         "special": "CHANCE",
         "nearest_railroad": 5,
-        "nearest_utility": 12
+        "nearest_utility": 12,
+        "members_of_monopoly": []
     }, 
     "8": {
         "rent_with_two_house": 290, 
@@ -137,7 +145,8 @@
         "buy_cost": 140, 
         "rent_with_four_house": 450, 
         "buy_hotel_cost": 390, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [6,9]
     }, 
     "9": {
         "rent_with_two_house": 240, 
@@ -152,7 +161,8 @@
         "buy_cost": 200, 
         "rent_with_four_house": 400, 
         "buy_hotel_cost": 420, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [6,8]
     }, 
     "10": {
         "rent_with_two_house": null, 
@@ -167,7 +177,8 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "JAIL"
+        "special": "JAIL",
+        "members_of_monopoly": []
     }, 
     "11": {
         "rent_with_two_house": 250, 
@@ -182,7 +193,8 @@
         "buy_cost": 270, 
         "rent_with_four_house": 420, 
         "buy_hotel_cost": 390, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [13, 14]
     }, 
     "12": {
         "rent_with_two_house": null, 
@@ -197,7 +209,8 @@
         "buy_cost": 230, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "UTILITY"
+        "special": "UTILITY",
+        "members_of_monopoly": []
     }, 
     "13": {
         "rent_with_two_house": 290, 
@@ -212,7 +225,8 @@
         "buy_cost": 280, 
         "rent_with_four_house": 440, 
         "buy_hotel_cost": 390, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [11, 14]
     }, 
     "14": {
         "rent_with_two_house": 260, 
@@ -227,7 +241,8 @@
         "buy_cost": 100, 
         "rent_with_four_house": 420, 
         "buy_hotel_cost": 420, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [11, 13]
     }, 
     "15": {
         "rent_with_two_house": null, 
@@ -242,7 +257,8 @@
         "buy_cost": 200,
         "rent_with_four_house": null,
         "buy_hotel_cost": null,
-        "special": "UTILITY"
+        "special": "UTILITY",
+        "members_of_monopoly": [5, 25, 35]
     },
     "16": {
         "rent_with_two_house": 220, 
@@ -257,7 +273,8 @@
         "buy_cost": 170, 
         "rent_with_four_house": 420, 
         "buy_hotel_cost": 350, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [18, 19]
     }, 
     "17": {
         "rent_with_two_house": null, 
@@ -274,7 +291,8 @@
         "buy_hotel_cost": null, 
         "special": "COMMUNITY CHEST",
         "nearest_railroad": 15,
-        "nearest_utility": 12
+        "nearest_utility": 12,
+        "members_of_monopoly": []
     }, 
     "18": {
         "rent_with_two_house": 280, 
@@ -289,7 +307,8 @@
         "buy_cost": 210, 
         "rent_with_four_house": 440, 
         "buy_hotel_cost": 390, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [17, 19]
     }, 
     "19": {
         "rent_with_two_house": 270, 
@@ -304,7 +323,8 @@
         "buy_cost": 270, 
         "rent_with_four_house": 430, 
         "buy_hotel_cost": 370, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [17, 18]
     }, 
     "20": {
         "rent_with_two_house": null, 
@@ -319,7 +339,8 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "FREE PARKING"
+        "special": "FREE PARKING",
+        "members_of_monopoly": []
     }, 
     "21": {
         "rent_with_two_house": 220, 
@@ -334,7 +355,8 @@
         "buy_cost": 250, 
         "rent_with_four_house": 390, 
         "buy_hotel_cost": 380, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [23, 24]
     }, 
     "22": {
         "rent_with_two_house": null, 
@@ -351,7 +373,8 @@
         "buy_hotel_cost": null, 
         "special": "CHANCE",
         "nearest_railroad": 25,
-        "nearest_utility": 28
+        "nearest_utility": 28,
+        "members_of_monopoly": []
     }, 
     "23": {
         "rent_with_two_house": 270, 
@@ -366,7 +389,8 @@
         "buy_cost": 160, 
         "rent_with_four_house": 420, 
         "buy_hotel_cost": 380, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [21, 24]
     }, 
     "24": {
         "rent_with_two_house": 280, 
@@ -381,7 +405,8 @@
         "buy_cost": 230, 
         "rent_with_four_house": 430, 
         "buy_hotel_cost": 420, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [21, 23]
     }, 
     "25": {
         "rent_with_two_house": null, 
@@ -396,7 +421,8 @@
         "buy_cost": 200,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "UTILITY"
+        "special": "UTILITY",
+        "members_of_monopoly": [5, 15, 35]
     },
     "26": {
         "rent_with_two_house": 210, 
@@ -411,7 +437,8 @@
         "buy_cost": 260, 
         "rent_with_four_house": 390, 
         "buy_hotel_cost": 400, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [27, 29]
     }, 
     "27": {
         "rent_with_two_house": 290, 
@@ -426,7 +453,8 @@
         "buy_cost": 300, 
         "rent_with_four_house": 450, 
         "buy_hotel_cost": 420, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [26, 29]
     }, 
     "28": {
         "rent_with_two_house": null, 
@@ -441,7 +469,8 @@
         "buy_cost": 150,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "UTILITY"
+        "special": "UTILITY",
+        "members_of_monopoly": []
     }, 
     "29": {
         "rent_with_two_house": 270, 
@@ -456,7 +485,8 @@
         "buy_cost": 130, 
         "rent_with_four_house": 440, 
         "buy_hotel_cost": 350, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [26, 27]
     }, 
     "30": {
         "rent_with_two_house": null, 
@@ -471,7 +501,8 @@
         "buy_cost": null, 
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "GO TO JAIL"
+        "special": "GO TO JAIL",
+        "members_of_monopoly": []
     }, 
     "31": {
         "rent_with_two_house": 280, 
@@ -486,7 +517,8 @@
         "buy_cost": 140, 
         "rent_with_four_house": 470, 
         "buy_hotel_cost": 370, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [32, 34]
     }, 
     "32": {
         "rent_with_two_house": 240, 
@@ -501,7 +533,8 @@
         "buy_cost": 250, 
         "rent_with_four_house": 420, 
         "buy_hotel_cost": 360, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [31, 34]
     }, 
     "33": {
         "rent_with_two_house": null, 
@@ -518,7 +551,8 @@
         "buy_hotel_cost": null, 
         "special": "COMMUNITY CHEST",
         "nearest_railroad": 35,
-        "nearest_utility": 28
+        "nearest_utility": 28,
+        "members_of_monopoly": []
     }, 
     "34": {
         "rent_with_two_house": 250, 
@@ -533,7 +567,8 @@
         "buy_cost": 170, 
         "rent_with_four_house": 450, 
         "buy_hotel_cost": 400, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [31, 32]
     }, 
     "35": {
         "rent_with_two_house": null, 
@@ -548,7 +583,8 @@
         "buy_cost": 200,
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
-        "special": "UTILITY"
+        "special": "UTILITY",
+        "members_of_monopoly": [5, 15, 25]
     }, 
     "36": {
         "rent_with_two_house": null, 
@@ -565,7 +601,8 @@
         "buy_hotel_cost": null, 
         "special": "CHANCE",
         "nearest_railroad": 35,
-        "nearest_utility": 28
+        "nearest_utility": 28,
+        "members_of_monopoly": []
     }, 
     "37": {
         "rent_with_two_house": 260, 
@@ -580,7 +617,8 @@
         "buy_cost": 150, 
         "rent_with_four_house": 440, 
         "buy_hotel_cost": 350, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [39]
     }, 
     "38": {
         "rent_with_two_house": null, 
@@ -596,7 +634,8 @@
         "rent_with_four_house": null, 
         "buy_hotel_cost": null, 
         "special": "LUXURY TAX",
-        "tax": 100
+        "tax": 100,
+        "members_of_monopoly": []
     }, 
     "39": {
         "rent_with_two_house": 260, 
@@ -611,6 +650,7 @@
         "buy_cost": 270, 
         "rent_with_four_house": 430, 
         "buy_hotel_cost": 410, 
-        "special": null
+        "special": null,
+        "members_of_monopoly": [37]
     }
 }

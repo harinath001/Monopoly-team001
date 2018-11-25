@@ -111,6 +111,19 @@ class Agent:
                 [prop_number, no_of_houses] = [int(x.strip()) for x in each_prop.strip().split(":")]
                 ans += [(prop_number, no_of_houses)]
             return ("S", ans)
+        elif o.lower() == "t":
+            print("Trading...")
+            print("enter the cash_offer, [properties numbers], cash_req, [prop nums requesting]")
+            print("enter the cash offer -- integer value")
+            cash_offer = int(str(raw_input()).strip())
+            print("enter the properties to offer (comma seperated integers)")
+            props_offer = [int(str(x).strip()) for x in str(raw_input()).strip().split(",")]
+            print("enter the cash to receive -- integer value")
+            cash_requesting = int(str(raw_input()).strip())
+            print("enter the properties to receive (comma seperated integers)")
+            props_req = [int(str(x).strip()) for x in str(raw_input()).strip().split(",")]
+            return ("T", cash_offer, props_offer, cash_requesting, props_req)
+
         elif o.lower() == "m":
             print("Mortgage....")
             print("enter prop_nums with comma seperated")

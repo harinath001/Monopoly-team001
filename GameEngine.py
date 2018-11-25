@@ -429,7 +429,7 @@ class GameEngine(object):
                     #         self.build_house(each_player, each_buy[0])
                 elif action[0] == "M":
                     flag = True
-                    self.mortgage(each_player, action[1])
+                    self.mortgage_state(each_player, action[1])
                     # for each_pos in action[1]:
                     #     self.mortgage_state(each_player, each_pos)
                 elif action[0] == "S":
@@ -444,7 +444,6 @@ class GameEngine(object):
                          "properties_requesting": [int(x) for x in action[4]]
                          }
                     self.trade_state(each_player, d)
-                    print("Trade is not yet implemented")
 
     def trade_state(self, player, trade_dict):
         if len([x for x in trade_dict["properties_for_offer"]+trade_dict["properties_requesting"] if x<0 or x>41 or (x<40 and abs(self.game_state.boxes[x].state)!=1 and abs(self.game_state.boxes[x].state)!=7)]) > 0:

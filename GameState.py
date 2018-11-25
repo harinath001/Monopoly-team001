@@ -107,15 +107,15 @@ class GameState(object):
             return None
         if box.special == "UTILITY":
             owned_boxes = self.get_all_owned_boxes(owner_id)
-            if "train" in str(box.display_name).lower():
+            if "rail" in str(box.display_name).lower() or box.position in [5, 15, 25, 35]:
                 count = 0
                 for each in owned_boxes:
-                    if "train" in str(self.boxes[each].display_name).lower():
+                    if "rail" in str(self.boxes[each].display_name).lower() or self.boxes[each].position in [5, 15, 25, 35]:
                         count+=1
                 r = (2**(count-1))*r
-            elif "tap" in str(box.display_name).lower():
+            elif "tap" in str(box.display_name).lower() or "water works" in str(box.display_name).lower():
                 r = (self.dice_values[0]+self.dice_values[1]) * r
-            elif "bulb" in str(box.display_name).lower():
+            elif "bulb" in str(box.display_name).lower() or "electric company" in str(box.display_name).lower():
                 r = (self.dice_values[0] + self.dice_values[1]) * r
         elif abs(box.state)==1:
             if self.is_colour_group_owned(box_index, owner_id,ignore_mortgaged=True):

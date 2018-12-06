@@ -1,6 +1,7 @@
 from GameState import Dice
 import random
 import pdb
+import json
 
 class GameEngine(object):
     def __init__(self, game_state, player1, player2, bank, dice=None):
@@ -9,6 +10,7 @@ class GameEngine(object):
         self.p2 = player2
         self.bank = bank
         self.dice = dice if dice is not None else Dice()
+        self.log_dict = {}
 
     def is_start_crossed(self, old_pos, new_pos):
         new_pos = new_pos%40
@@ -754,4 +756,24 @@ class GameEngine(object):
         f.write("mort boxes: %s\n" % (",".join([str(x) for x in self.game_state.get_all_mortgaged_boxes(1)]),))
         f.write("ALL houses: %s\n" % (",".join([str(x) for x in self.game_state.get_all_houses_boxes_indexes(1)]),))
         f.write("ALL hotels: %s\n" % (",".join([str(x) for x in self.game_state.get_all_hotels_boxes_indexes(1)]),))
+        f.close()
+
+        new_d = {}
+        new_d["player_1_pos"] = self.p1.get_position()
+        new_d["player_2_pos"] = self.p2.get_position()
+        new_d["player_1_cash"] = self.p1.cash
+        new_d["player_2_cash"] = self.p2.cash
+        new_d["player_1_jail_cards"] = [40+i for i,x in enumerate(self.game_state.jail_cards) if x==0]
+        new_d["player_2_jail_cards"] = [40+i for i,x in enumerate(self.game_state.jail_cards) if x==1]
+        new_d["player_1_owned"] = [x for x in self.game_state.get_all_owned_boxes(0)]
+        new_d["player_2_owned"] = [x for x in self.game_state.get_all_owned_boxes(1)]
+        new_d["player_1_mortgaged"] = [x for x in self.game_state.get_all_mortgaged_boxes(0)]
+        new_d["player_2_mortgaged"] = [x for x in self.game_state.get_all_mortgaged_boxes(1)]
+        player_1_houses = [x for x in self.game_state.get_all_houses_boxes_indexes(0)]
+        player_2_houses = [x for x in self.game_state.get_all_houses_boxes_indexes(1)]
+        new_d["player_1_houses"] = [(x, abs(self.game_state.boxes[x].state)-1) for x in player_1_houses]
+        new_d["player_2_houses"] = [(x, abs(self.game_state.boxes[x].state) - 1) for x in player_2_houses]
+        self.log_dict["states"] = self.log_dict.get("states", []) + [new_d]
+        f = open("log.json", "w")
+        f.write(json.dumps(self.log_dict, indent=4))
         f.close()

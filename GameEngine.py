@@ -22,8 +22,11 @@ class GameEngine(object):
         return (self.p1, self.p2) if self.game_state.turn_number%2 == 0 else (self.p2, self.p1)
 
     def run(self):
+        total_steps = 0
+        step_limit = 100
         self.print_state()
-        while True:
+        while total_steps < step_limit:
+            total_steps += 1
             curr, other = self.get_players()
             self.bmst()
             if curr.is_in_jail():
@@ -41,6 +44,9 @@ class GameEngine(object):
             print("one round is done PRESS ENTER to continue")
             self.print_state()
             raw_input()
+        if total_steps >=step_limit:
+            print("Total step limit is exceeded...GAME ENDED..")
+
 
     def steps(self):
         self.move_the_player()

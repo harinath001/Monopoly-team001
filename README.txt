@@ -4,6 +4,8 @@ HOW TO RUN THE PROJECT
 Run the Game.py by using python
 python Game.py
 
+Important info: Use python2.7 as we are using raw_input() in the agent
+
 the game will start by printing the statements.
 And because the agents are NOT intelligent, humans has to take the decision
 that means, when a agent/player want to make decision, it will just prompt in the command line
@@ -26,9 +28,16 @@ example. If you want the "card" at index 8 should have "price" as 1000 then you 
 
 
 After reading the data, by default the game will take a "naive dice",
-naive dice will always prompt for the user input which is conisdered as the dice values at each step.
+naive dice will always prompt for the user input which is considered as the dice values at each step.
 
 For example: it will prompt...it is player 0's turn...enter the dice values
 then human will enter the values as 2,1, then it will assume that the dice values are 2 and 1 and the player 0 is moved
 towards 3 steps
+
+
+Log
+-----
+
+The entire state of the game in form of log goes to log.json, which is a json file updated in each step
+This can be given input to the UI module which can show the sequence of steps that happened in the game
 

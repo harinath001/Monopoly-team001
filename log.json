@@ -1,0 +1,71 @@
+{
+    "states": [
+        {
+            "player_2_owned": [], 
+            "player_2_houses": [], 
+            "player_1_houses": [], 
+            "player_2_pos": 0, 
+            "player_2_jail_cards": [], 
+            "player_2_mortgaged": [], 
+            "player_1_cash": 2000, 
+            "player_1_mortgaged": [], 
+            "player_2_cash": 2000, 
+            "player_1_pos": 0, 
+            "player_1_jail_cards": [], 
+            "player_1_owned": []
+        }, 
+        {
+            "player_2_owned": [], 
+            "player_2_houses": [], 
+            "player_1_houses": [], 
+            "player_2_pos": 0, 
+            "player_2_jail_cards": [], 
+            "player_2_mortgaged": [], 
+            "player_1_cash": 1880, 
+            "player_1_mortgaged": [], 
+            "player_2_cash": 2000, 
+            "player_1_pos": 9, 
+            "player_1_jail_cards": [], 
+            "player_1_owned": [
+                9
+            ]
+        }, 
+        {
+            "player_2_owned": [
+                8
+            ], 
+            "player_2_houses": [], 
+            "player_1_houses": [], 
+            "player_2_pos": 8, 
+            "player_2_jail_cards": [], 
+            "player_2_mortgaged": [], 
+            "player_1_cash": 1880, 
+            "player_1_mortgaged": [], 
+            "player_2_cash": 1900, 
+            "player_1_pos": 9, 
+            "player_1_jail_cards": [], 
+            "player_1_owned": [
+                9
+            ]
+        }, 
+        {
+            "player_2_owned": [
+                8
+            ], 
+            "player_2_houses": [], 
+            "player_1_houses": [], 
+            "player_2_pos": 8, 
+            "player_2_jail_cards": [], 
+            "player_2_mortgaged": [], 
+            "player_1_cash": 1700, 
+            "player_1_mortgaged": [], 
+            "player_2_cash": 1900, 
+            "player_1_pos": 16, 
+            "player_1_jail_cards": [], 
+            "player_1_owned": [
+                9, 
+                16
+            ]
+        }
+    ]
+}

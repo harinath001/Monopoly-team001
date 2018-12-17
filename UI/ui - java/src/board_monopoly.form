@@ -1,0 +1,1349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Monopoly">
+  <grid id="27dc6" binding="board_main" layout-manager="FlowLayout" hgap="3" vgap="3" flow-align="0">
+    <constraints>
+      <xy x="20" y="22" width="852" height="846"/>
+    </constraints>
+    <properties>
+      <background color="-14794436"/>
+      <inheritsPopupMenu value="true"/>
+      <maximumSize width="860" height="860"/>
+      <minimumSize width="100" height="100"/>
+      <preferredSize width="848" height="848"/>
+      <requestFocusEnabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="a6df9" binding="board_20" layout-manager="FlowLayout" hgap="2" vgap="2" flow-align="0">
+        <constraints/>
+        <properties>
+          <alignmentX value="0.0"/>
+          <alignmentY value="0.0"/>
+          <autoscrolls value="false"/>
+          <background color="-4473925"/>
+          <focusCycleRoot value="true"/>
+          <inheritsPopupMenu value="true"/>
+          <maximumSize width="90" height="90"/>
+          <name value="Free Parking"/>
+          <opaque value="true"/>
+          <preferredSize width="90" height="90"/>
+          <requestFocusEnabled value="true"/>
+          <toolTipText value="Free Parking"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="d5da5" class="javax.swing.JLabel" binding="label_20">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <iconTextGap value="0"/>
+              <preferredSize width="90" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3304e" binding="board_21" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <alignmentX value="0.0"/>
+          <alignmentY value="0.0"/>
+          <background color="-6029312"/>
+          <doubleBuffered value="false"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Kentucky Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="de33" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="c7a4d" class="javax.swing.JLabel" binding="own_21">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="f307a" class="javax.swing.JLabel" binding="label_21">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f107d" binding="board_22" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Chance"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="1071d" class="javax.swing.JLabel" binding="label_22">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="3fc0a" binding="board_23" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-6029312"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Indiana Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="42991" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="ce083" class="javax.swing.JLabel" binding="own_23">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="7a9a8" class="javax.swing.JLabel" binding="label_23">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="8ac8d" binding="board_24" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-6029312"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Illinois Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="d3b88" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="2ef67" class="javax.swing.JLabel" binding="own_24">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="36ca9" class="javax.swing.JLabel" binding="label_24">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="de4f6" binding="board_25" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="B &amp; O Railroad"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="f0377" class="javax.swing.JLabel" binding="label_25">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="9fb66" binding="board_26" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-4848"/>
+          <foreground color="-4473925"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Atlantic Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="42c7e" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="3d611" class="javax.swing.JLabel" binding="own_26">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="a9953" class="javax.swing.JLabel" binding="label_26">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="fb79b" binding="board_27" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-4848"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Ventnor Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="451a3" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="e3e03" class="javax.swing.JLabel" binding="own_27">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="7c7c1" class="javax.swing.JLabel" binding="label_27">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="740cf" binding="board_28" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Water Works"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2c4b7" class="javax.swing.JLabel" binding="label_28">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="b305f" binding="board_29" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-4848"/>
+          <minimumSize width="10" height="10"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Marvin Gardens"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="8ef06" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="acd6e" class="javax.swing.JLabel" binding="own_29">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="64998" class="javax.swing.JLabel" binding="label_29">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="4f44d" binding="board_30" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <minimumSize width="90" height="90"/>
+          <preferredSize width="90" height="90"/>
+          <toolTipText value="Go to Jail"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="b50d7" class="javax.swing.JLabel" binding="label_30">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <iconTextGap value="0"/>
+              <preferredSize width="90" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="42a41" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-6143483"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="New York Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="db7e5" binding="board_19" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="5fa35" class="javax.swing.JLabel" binding="own_19">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="79ddd" class="javax.swing.JLabel" binding="label_19">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <doubleBuffered value="false"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="cde24" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="654" height="0"/>
+        </properties>
+      </component>
+      <grid id="25aca" binding="board_31" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-16726016"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Pacific Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="675e3" layout-manager="FlowLayout" hgap="0" vgap="5" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="5bbdb" class="javax.swing.JLabel" binding="own_31">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="23f00" class="javax.swing.JLabel" binding="label_31">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="de0c3" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-6143483"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Tennesse Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="98a9" binding="board_18" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="true"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="6d94c" class="javax.swing.JLabel" binding="own_18">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="e919f" class="javax.swing.JLabel" binding="label_18">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="3088d" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="654" height="0"/>
+        </properties>
+      </component>
+      <grid id="d5ada" binding="board_32" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-16726016"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="North Carolina Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="92dd7" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="9e346" class="javax.swing.JLabel" binding="own_32">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="8e730" class="javax.swing.JLabel" binding="label_32">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="b818b" binding="board_17" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Community Chest"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="bc77a" class="javax.swing.JLabel" binding="label_17">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="e692f" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <foreground color="-1"/>
+          <preferredSize width="280" height="0"/>
+        </properties>
+      </component>
+      <component id="18f8e" class="javax.swing.JTextField" binding="tf_tunCount">
+        <constraints/>
+        <properties>
+          <maximumSize width="60" height="30"/>
+          <minimumSize width="60" height="30"/>
+          <preferredSize width="64" height="30"/>
+        </properties>
+      </component>
+      <component id="32d61" class="javax.swing.JButton" binding="btn_setTurn">
+        <constraints/>
+        <properties>
+          <label value="Set"/>
+          <maximumSize width="70" height="30"/>
+          <minimumSize width="70" height="30"/>
+          <preferredSize width="70" height="30"/>
+          <text value="Set"/>
+        </properties>
+      </component>
+      <component id="db2b" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="230" height="0"/>
+        </properties>
+      </component>
+      <grid id="7724c" binding="board_33" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Community Chest"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="6b8f5" class="javax.swing.JLabel" binding="label_33">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="136a2" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-6143483"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="St. James Place"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="3aaf8" binding="board_16" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="112b1" class="javax.swing.JLabel" binding="own_16">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="f718d" class="javax.swing.JLabel" binding="label_16">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="42d54" class="javax.swing.JLabel" binding="label_p1_cash">
+        <constraints/>
+        <properties>
+          <font size="28"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <preferredSize width="327" height="50"/>
+          <text value=""/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <component id="462db" class="javax.swing.JLabel" binding="label_p2_cash">
+        <constraints/>
+        <properties>
+          <font size="28"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <preferredSize width="327" height="50"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <grid id="27ee4" binding="board_34" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-16726016"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Pennsylvania Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="d1599" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="4e774" class="javax.swing.JLabel" binding="own_34">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="8e31d" class="javax.swing.JLabel" binding="label_34">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="6049e" binding="board_15" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Pennsylvania Railroad"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="631bb" class="javax.swing.JLabel" binding="label_15">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="9bbe6" class="javax.swing.JLabel" binding="label_p1_position">
+        <constraints/>
+        <properties>
+          <font size="28"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <preferredSize width="327" height="50"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="a9e73" class="javax.swing.JLabel" binding="label_p2_position">
+        <constraints/>
+        <properties>
+          <font size="28"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="0"/>
+          <preferredSize width="327" height="50"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <grid id="f9c7e" binding="board_35" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Short Line"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="cb416" class="javax.swing.JLabel" binding="label_35">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="8d0d0" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-6157711"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Virginia Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="dd71a" binding="board_14" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="620b" class="javax.swing.JLabel" binding="own_14">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="ce682" class="javax.swing.JLabel" binding="label_14">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="8a58b" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="654" height="0"/>
+        </properties>
+      </component>
+      <grid id="9b8bd" binding="board_36" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Chance"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="fc035" class="javax.swing.JLabel" binding="label_36">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="94eec" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-6157711"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="States Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="52bac" binding="board_13" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="36419" class="javax.swing.JLabel" binding="own_13">
+                <constraints/>
+                <properties>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="ed07" class="javax.swing.JLabel" binding="label_13">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="3db9e" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="654" height="0"/>
+        </properties>
+      </component>
+      <grid id="21ee1" binding="board_37" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-15318072"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Park Place"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="a394d" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="e5e20" class="javax.swing.JLabel" binding="own_37">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="bcf93" class="javax.swing.JLabel" binding="label_37">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c6655" binding="board_12" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-12828863"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Electric Company"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a80bb" class="javax.swing.JLabel" binding="label_12">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="d278" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="654" height="0"/>
+        </properties>
+      </component>
+      <grid id="ea53f" binding="board_38" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="2">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Luxury Tax"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="1a6ae" class="javax.swing.JLabel" binding="label_38">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="70"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="bbf96" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-6157711"/>
+          <focusCycleRoot value="false"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="St. Charles Place"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="267af" binding="board_11" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="9576d" class="javax.swing.JLabel" binding="own_11">
+                <constraints/>
+                <properties>
+                  <alignmentY value="0.0"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="a9cec" class="javax.swing.JLabel" binding="label_11">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="c49c0" class="javax.swing.JSeparator">
+        <constraints/>
+        <properties>
+          <preferredSize width="654" height="0"/>
+        </properties>
+      </component>
+      <grid id="cee61" binding="board_39" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+        <constraints/>
+        <properties>
+          <background color="-15318072"/>
+          <preferredSize width="90" height="70"/>
+          <toolTipText value="Boardwalk"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="8bb8d" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="0">
+            <constraints/>
+            <properties>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="f5ecb" class="javax.swing.JLabel" binding="own_39">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="22310" class="javax.swing.JLabel" binding="label_39">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="f601d" binding="board_10" layout-manager="FlowLayout" hgap="1" vgap="1" flow-align="0">
+        <constraints/>
+        <properties>
+          <alignmentX value="0.0"/>
+          <alignmentY value="0.0"/>
+          <autoscrolls value="false"/>
+          <background color="-12828863"/>
+          <focusCycleRoot value="true"/>
+          <inheritsPopupMenu value="true"/>
+          <maximumSize width="100" height="100"/>
+          <name value="Free Parking"/>
+          <opaque value="true"/>
+          <preferredSize width="90" height="90"/>
+          <requestFocusEnabled value="true"/>
+          <toolTipText value="Jail"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="6dd35" class="javax.swing.JLabel" binding="label_10">
+            <constraints/>
+            <properties>
+              <preferredSize width="90" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="de51b" binding="board_9" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-10315868"/>
+          <doubleBuffered value="false"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Connecticut Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="ec603" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="972cb" class="javax.swing.JLabel" binding="own_9">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="f4f05" class="javax.swing.JLabel" binding="label_9">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="83da3" binding="board_8" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-10315868"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Chance"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="197c7" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="3f29c" class="javax.swing.JLabel" binding="own_8">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="8d01f" class="javax.swing.JLabel" binding="label_8">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="77b1c" binding="board_7" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Vermonet Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="ec596" class="javax.swing.JLabel" binding="label_7">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="20534" binding="board_6" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-10315868"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Oriental Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="922b6" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="50df5" class="javax.swing.JLabel" binding="own_6">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="c3289" class="javax.swing.JLabel" binding="label_6">
+            <constraints/>
+            <properties>
+              <background color="-16777216"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <preferredSize width="20" height="20"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c957f" binding="board_5" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Reading Railroad"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="72624" class="javax.swing.JLabel" binding="label_5">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="74d84" binding="board_4" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-12828863"/>
+          <foreground color="-4473925"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Income Tax"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="7caf6" class="javax.swing.JLabel" binding="label_4">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="c53a9" binding="board_3" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-6143483"/>
+          <foreground color="-16777216"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Baltic Avenue"/>
+        </properties>
+        <border type="none">
+          <title-color color="-4520690"/>
+        </border>
+        <children>
+          <grid id="45253" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none">
+              <title-color color="-6029312"/>
+            </border>
+            <children>
+              <component id="c6a4b" class="javax.swing.JLabel" binding="own_3">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="1eeec" class="javax.swing.JLabel" binding="label_3">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="575ce" binding="board_2" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Community Chest"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="56616" class="javax.swing.JLabel" binding="label_2">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="7f5ad" binding="board_1" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <background color="-6143483"/>
+          <minimumSize width="10" height="10"/>
+          <preferredSize width="70" height="90"/>
+          <toolTipText value="Mediterranean Avenue"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="953e4" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="0.0"/>
+              <doubleBuffered value="false"/>
+              <preferredSize width="70" height="70"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="be40f" class="javax.swing.JLabel" binding="own_1">
+                <constraints/>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <preferredSize width="70" height="70"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="130e" class="javax.swing.JLabel" binding="label_1">
+            <constraints/>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="0"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="80141" binding="board_0" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints/>
+        <properties>
+          <preferredSize width="90" height="90"/>
+          <toolTipText value="Go"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="4259d" class="javax.swing.JLabel" binding="label_0">
+            <constraints/>
+            <properties>
+              <alignmentY value="0.0"/>
+              <preferredSize width="90" height="90"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

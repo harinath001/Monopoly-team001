@@ -1,0 +1,93 @@
+{
+  "states": [
+    {
+      "player_2_owned": [
+        6,
+        9,
+        11,
+        8
+      ],
+      "player_2_houses": [
+        6,
+        9,
+        8,
+        6
+      ],
+      "player_1_houses": [
+        26
+      ],
+      "player_2_pos": 22,
+      "player_2_jail_cards": [],
+      "player_2_mortgaged": [23],
+      "player_1_cash": 567,
+      "player_1_mortgaged": [11],
+      "player_2_cash": 1123,
+      "player_1_pos": 11,
+      "player_1_jail_cards": [],
+      "player_1_owned": [
+        19,
+        23,
+        29,
+        27,
+        26
+      ]
+    },
+    {
+      "player_2_owned": [
+        6,
+        9,
+        18
+      ],
+      "player_2_houses": [],
+      "player_1_houses": [],
+      "player_2_pos": 0,
+      "player_2_jail_cards": [],
+      "player_2_mortgaged": [],
+      "player_1_cash": 1880,
+      "player_1_mortgaged": [],
+      "player_2_cash": 2000,
+      "player_1_pos": 9,
+      "player_1_jail_cards": [],
+      "player_1_owned": [
+        9
+      ]
+    },
+    {
+      "player_2_owned": [
+        8
+      ],
+      "player_2_houses": [],
+      "player_1_houses": [],
+      "player_2_pos": 8,
+      "player_2_jail_cards": [],
+      "player_2_mortgaged": [],
+      "player_1_cash": 1880,
+      "player_1_mortgaged": [],
+      "player_2_cash": 1900,
+      "player_1_pos": 9,
+      "player_1_jail_cards": [],
+      "player_1_owned": [
+        9
+      ]
+    },
+    {
+      "player_2_owned": [
+        8
+      ],
+      "player_2_houses": [],
+      "player_1_houses": [],
+      "player_2_pos": 8,
+      "player_2_jail_cards": [],
+      "player_2_mortgaged": [],
+      "player_1_cash": 1700,
+      "player_1_mortgaged": [],
+      "player_2_cash": 1900,
+      "player_1_pos": 16,
+      "player_1_jail_cards": [],
+      "player_1_owned": [
+        9,
+        16
+      ]
+    }
+  ]
+}
